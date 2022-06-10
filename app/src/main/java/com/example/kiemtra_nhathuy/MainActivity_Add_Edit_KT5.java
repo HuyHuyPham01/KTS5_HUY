@@ -37,12 +37,14 @@ public class MainActivity_Add_Edit_KT5 extends AppCompatActivity {
         actionBar.setTitle("Chỉnh sửa sản phẩm");
         actionBar.setDisplayHomeAsUpEnabled(true);
 
+        // Lấy các control trên layout
         buttonLuu = findViewById(R.id.buttonLuu);
         buttonThoat = findViewById(R.id.buttonThoat);
         editTextTenSP = findViewById(R.id.editTextTenSP);
         editTextDonVi = findViewById(R.id.editTextDonVi);
         editTextGiaSP = findViewById(R.id.editTextGiaSP);
 
+        // Hiển thị lên màn hình
         Intent it = getIntent();
         position = it.getExtras().getInt(EXTRA_POSITION);
 
@@ -59,9 +61,11 @@ public class MainActivity_Add_Edit_KT5 extends AppCompatActivity {
             Log.d("position", "-1");
         }
 
+        // Thiết đặt sự kiện khi click vào các button
         buttonLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Lấy dữ liệu từ layout để cập nhật lại các sản phẩm trong mảng
                 product.setTenSp(editTextTenSP.getText().toString());
                 product.setDonVi(editTextDonVi.getText().toString());
                 String s = editTextGiaSP.getText().toString();
@@ -77,6 +81,7 @@ public class MainActivity_Add_Edit_KT5 extends AppCompatActivity {
         buttonThoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Không làm gì cả và trở về màn hình trước
                 Intent returnIntent = new Intent();
                 setResult(Activity.RESULT_CANCELED, returnIntent);
                 finish();

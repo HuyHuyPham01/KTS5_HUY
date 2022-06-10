@@ -45,13 +45,18 @@ public class MainActivity_KT5 extends AppCompatActivity {
         editTextGiaSP = findViewById(R.id.editTextGiaSP);
         listViewShop = findViewById(R.id.listViewShop);
 
+        // Khởi tạo các sản phẩm
         SaleManager saleManager = SaleManager.get();
         saleManager.generateProducts();
 
+        // Lấy các product từ class saleManager
         ArrayList products = saleManager.getProducts();
+        // Khởi tạo adapter
         productAdapter = new ProductAdapter(MainActivity_KT5.this, products);
+        // Hiển thị lên listview
         listViewShop.setAdapter(productAdapter);
 
+        // Thêm sản phẩm
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +64,7 @@ public class MainActivity_KT5 extends AppCompatActivity {
             }
         });
 
+        // Click để sửa
         listViewShop.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -69,6 +75,7 @@ public class MainActivity_KT5 extends AppCompatActivity {
             }
         });
 
+        // Long click để xoá
         listViewShop.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
@@ -95,7 +102,7 @@ public class MainActivity_KT5 extends AppCompatActivity {
                 AlertDialog al = b.create();
 
                 al.show();
-                return false;
+                return true;
             }
         });
 
@@ -134,10 +141,13 @@ public class MainActivity_KT5 extends AppCompatActivity {
     }
 
     private void openMyCustom() {
+        // Khởi tạo AlertDialog từ đối tượng Builder. tham số truyền vào ở đây là context.
         final AlertDialog builder = new AlertDialog.Builder(this).create();
 
+        // Khởi tạo đối tượng View từ file activity_add_edit_kt5.
         final View alert = LayoutInflater.from(this).inflate(R.layout.activity_add_edit_kt5, null);
 
+        // Set layout cho alert dialog
         builder.setView(alert);
 
         final EditText editTextTenSP;
@@ -146,14 +156,17 @@ public class MainActivity_KT5 extends AppCompatActivity {
         Button buttonLuu;
         Button buttonThoat;
 
+        // Tham chiếu các đối tượng có trên giao diện dialog vừa được set
         editTextTenSP = alert.findViewById(R.id.editTextTenSP);
         editTextDonVi = alert.findViewById(R.id.editTextDonVi);
         editTextGiaSP = alert.findViewById(R.id.editTextGiaSP);
         buttonLuu = alert.findViewById(R.id.buttonLuu);
         buttonThoat = alert.findViewById(R.id.buttonThoat);
 
+        // Tạo dialog và hiển thị
         builder.show();
 
+        // Bắt sự kiện click vào nút Lưu
         buttonLuu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,6 +183,7 @@ public class MainActivity_KT5 extends AppCompatActivity {
             }
         });
 
+        // Bắt sự kiện click vào nút Thoát
         buttonThoat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
